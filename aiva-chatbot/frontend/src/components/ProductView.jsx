@@ -1,1 +1,1 @@
-//Tuotenäkymä
+//Tuotenäkymä-komponentti
