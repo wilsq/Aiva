@@ -3,7 +3,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 400px;
+    width: 1000px;
     background-color: white;
     border-radius: 16px;
     padding: 0px;
@@ -11,8 +11,15 @@
 }
 
 .chat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     height: 400px;
     padding: 25px 20px;
+    margin-bottom: 70px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: lightblue;
 }
 
 .chat-header {

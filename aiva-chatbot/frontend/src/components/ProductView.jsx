@@ -1,1 +1,1 @@
-//Tuotenäkymä-komponentti
+//Tuotenäkymä, jos klikkaa keskustelussa olevaa tuote-ehdotusta

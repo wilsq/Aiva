@@ -4,8 +4,16 @@
 import React, { useState, useEffect } from "react";
 import aivaIcon from "../images/aiva.png";  
 import "./ChatWindow.css"
+import ChatForm from "./ChatForm.jsx"
+import ChatMessage from "./ChatMessage.jsx";
 
 function ChatWindow() {
+    const [chatHistory, setChatHistory] = useState([]);
+
+    const generateBotResponse = () => {
+
+    }
+
     return (
         <div className="chat-window">
             <div className="chat-header">
@@ -16,15 +24,14 @@ function ChatWindow() {
                     <img src={aivaIcon} alt="aiva-bot" className="chat-icon" />
                     <div className="chat-bubble bot-bubble">Hei! Miten voin auttaa sinua tänään?</div>
                 </div>
-                <div className="chat-message user">
-                    <div className="chat-bubble user-bubble">Etsin uutta telkkaria</div>
-                </div>
+
+                {chatHistory.map((chat, index) => (
+                    <ChatMessage key={index} chat={chat} />
+                ))}
+
             </div>
             <div className="chat-footer">
-                <form action="#" className="chat-form">
-                    <input type="text" placeholder="Kirjoita kysymys" className="message-input" required />
-                    <button className="chat-button"><span className="material-icons">arrow_upward</span></button>
-                </form>
+                <ChatForm chatHistory={chatHistory} setChatHistory={setChatHistory} generateBotResponse={generateBotResponse}/>
             </div>
         </div>
     );

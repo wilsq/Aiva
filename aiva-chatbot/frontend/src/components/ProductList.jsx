@@ -1,1 +1,1 @@
-//Tuotelistaus hakutuloksiin
+//Tuotelistauksen näkymä 
