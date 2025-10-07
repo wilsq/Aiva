@@ -44,6 +44,7 @@
     display: flex;
     align-items: flex-end;
     margin-bottom: 15px;
+    color: black;
 }
 
 /*Chatbotin keskustelun paikan määrittely, jotta se on ekana ylhäällä ja vasemmalla puolella*/
@@ -87,7 +88,7 @@
 .chat-footer .chat-form {
     display: flex;
     align-items: center;
-    outline: 1px solid #CCCCE5;
+    outline: 1px solid darkblue;
     border-radius: 15px;
 }
 
