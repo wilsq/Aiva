@@ -1,120 +1,127 @@
 /*chatbotin keskustelualueen koon ja ulkonäön määrittely */
 .chat-window {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 1000px;
-    background-color: white;
-    border-radius: 16px;
-    padding: 0px;
-    margin: 0;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 1000px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 0px;
+  margin: 0;
 }
 
 .chat-body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    height: 400px;
-    padding: 25px 20px;
-    margin-bottom: 70px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 400px;
+  padding: 25px 20px;
+  margin-bottom: 70px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: lightblue;
 }
 
 .chat-header {
-    background-color: darkblue;
-    color: white;
-    margin: 0;
-    text-align: center;
-    padding: 5px 0;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+  background-color: darkblue;
+  color: white;
+  margin: 0;
+  text-align: center;
+  padding: 5px 0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 /*ikonin koon määrittely ja muokkaaminen pyöreäksi  */
 .chat-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .chat-message {
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 15px;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 15px;
 }
 
 /*Chatbotin keskustelun paikan määrittely, jotta se on ekana ylhäällä ja vasemmalla puolella*/
 .chat-message.bot {
-    justify-content: flex-start;
-
+  justify-content: flex-start;
 }
 
 /*Käyttäjän keskustelupaikan määrittely*/
 .chat-message.user {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 /*Keskustelukuplan määrittely*/
 .chat-bubble {
-    max-width: 70%;
-    padding: 8px 12px;
-    border-radius: 15px;
-    font-size: 14px;
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 14px;
 }
 
 .bot-bubble {
-    background-color: #f0f0f0;
-    margin-left: 5px;
+  background-color: #f0f0f0;
+  margin-left: 5px;
 }
 
 .user-bubble {
-    background-color: #b5d1f1;
-    margin-right: 8px;
+  background-color: #b5d1f1;
+  margin-right: 8px;
 }
 
 /*Keskustelualueen paikan ja ulkonäön määrittelyä */
 .chat-footer {
-    position: absolute;
-    bottom: 0;
-    width: 90%;
-    background: white;
-    padding: 15px 20px;
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  background: white;
+  padding: 15px 20px;
 }
 
 .chat-footer .chat-form {
-    display: flex;
-    align-items: center;
-    outline: 1px solid #CCCCE5;
-    border-radius: 15px;
+  display: flex;
+  align-items: center;
+  outline: 1px solid #cccce5;
+  border-radius: 15px;
 }
 
 .chat-form .message-input {
-    border: none;
-    outline: none;
-    width: 100%;
-    padding: 10px;
-    height: 45px;
-    padding: 0 15px;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  height: 45px;
+  padding: 0 15px;
 }
 
 .chat-button {
-    position: fixed;
-    bottom: 37px;
-    right: 43px;
-    background-color: darkblue;
-    color: white;
-    border: none;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  bottom: 37px;
+  right: 43px;
+  background-color: darkblue;
+  color: white;
+  border: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chat-button:hover {
-    background-color: #b5d1f1;
+  background-color: #b5d1f1;
 }
+
+/* DEMO */
+
+.result-box {
+  color: black;
+}
+
+/* DEMO */
