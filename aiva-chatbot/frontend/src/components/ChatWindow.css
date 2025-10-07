@@ -3,11 +3,12 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 1000px;
+    width: 100%;
+    max-width: 1000px;
     background-color: white;
     border-radius: 16px;
     padding: 0px;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .chat-body {
