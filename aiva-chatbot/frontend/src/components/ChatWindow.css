@@ -99,6 +99,7 @@
     padding: 10px;
     height: 45px;
     padding: 0 15px;
+    border-radius: inherit;
 }
 
 .chat-button {
