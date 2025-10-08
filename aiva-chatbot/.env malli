@@ -1,5 +1,0 @@
-MONGO_URI=mongodb+srv://USERNAME:PASSWORD@cluster0.ltocuuh.mongodb.net/AivaDB?retryWrites=true&w=majority&appName=Cluster0
-PORT=5000
-
-
-.env malli
