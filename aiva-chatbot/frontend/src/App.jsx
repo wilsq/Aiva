@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css';
 import Navbar from "./components/Navbar"
 import ChatWindow from "./components/ChatWindow"
+import ProductSearch from './components/ProductSearch';
 
 function App(){
   return (
@@ -9,9 +10,12 @@ function App(){
       <Navbar />
 
       <div className='tervetuloa'>
-      <h1>AIVA</h1>
-      <p>Kysy Aivalta apua tuotteisiin liittyen. Aiva auttaa mielellään.</p>
+      <h1>Tuotteet</h1>
+      <p>Etsi sinulle sopivia telkkareita.</p>
+      <ProductSearch />
+      <p>Aiva-avustajamme auttaa sinua mielellään kaikissa kysymyksissä!</p>
       </div>
+
       <ChatWindow />
 
 
