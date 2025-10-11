@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 
 
-
-
 function ProductSearch() {
     const [input, setInput] = useState("");
     const [result, setResult] = useState(null);
@@ -37,11 +35,19 @@ async function handleFetch() {
         </button>
 
 
-    {result && Array.isArray(result) && result.length > 0 ? (
-          <div className="mt-4 p-4 border rounded result-box">
-            <h2>{result[0].name}</h2>
-            <p>{result[0].description}</p>
-            <p>Hinta: {result[0].price} €</p>
+    {Array.isArray(result) && result.length > 0 ? (
+          <div className="tuotelista">
+            <h2>Löydetyt tuotteet</h2>
+            <ul>
+                {result.map((item, index) => (
+                    <div className="tuloskortti">
+                    <li key={index} className="tulos">
+                        <strong>{item.name}</strong> <br />
+                        <span>Hinta: {item.price}</span>
+                    </li>
+                    </div>
+            ))}
+            </ul>
           </div>
         ) : result && result.message ? (
           <div className="mt-4 p-4 border rounded result-box">

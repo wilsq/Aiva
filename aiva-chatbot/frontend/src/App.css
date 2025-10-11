@@ -53,3 +53,37 @@ h1 {
 .tervetuloa {
   margin: 20px;
 }
+
+ul {
+  list-style: none;
+}
+
+.productsearch {
+  margin: 5px;
+}
+
+.tuotelista {
+  border: 2px solid black;
+  margin: 20px 5px;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.tuloskortti {
+  margin: 5px;
+  padding: 5px;
+  display: inline-block;
+}
+
+.tulos {
+  border: 1px solid black;
+  padding: 5px;
+  box-shadow: 2px 2px black;
+}
+
+.tulos:hover {
+  color: darkblue;
+  background-color: white;
+  transform: translate(-3px);
+  box-shadow: 2px 5px grey;
+}
