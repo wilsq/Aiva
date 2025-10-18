@@ -7,7 +7,7 @@ import ProductSearch from './components/ProductSearch';
 function App(){
   return (
     <div className='App'>
-      <Navbar />
+      <Navbar/>
 
       <div className='tervetuloa'>
       <h1>Tuotteet</h1>

@@ -5,11 +5,11 @@
   right: 20px;
   width: 95%;
   max-width: 1000px;
-  background-color: white;
+  background-color: var(--bg);
   border-radius: 16px;
   padding: 0px;
   margin: 0;
-  color: black;
+  color: var(--text-alt);
 }
 
 .chat-body {
@@ -25,8 +25,8 @@
 }
 
 .chat-header {
-  background-color: darkblue;
-  color: white;
+  background-color: var(--header);
+  color: var(--bg);
   margin: 0;
   text-align: center;
   padding: 5px 0;
@@ -66,12 +66,12 @@
 }
 
 .bot-bubble {
-  background-color: #f0f0f0;
+  background-color: var(--bg-bubble-bot);
   margin-left: 5px;
 }
 
 .user-bubble {
-  background-color: #b5d1f1;
+  background-color: var(--bg-bubble-user);
   margin-right: 8px;
 }
 
@@ -80,7 +80,7 @@
   position: absolute;
   bottom: 0;
   width: 90%;
-  background: white;
+  background: var(--bg);
   padding: 15px 20px;
   border-radius: 15px;
 }
@@ -105,8 +105,8 @@
   position: fixed;
   bottom: 37px;
   right: 43px;
-  background-color: darkblue;
-  color: white;
+  background-color: var(--bg-alt);
+  color: var(--text-alt);
   border: none;
   height: 40px;
   width: 40px;
@@ -118,7 +118,9 @@
 }
 
 .chat-button:hover {
-  background-color: #b5d1f1;
+  background-color: var(--text-alt);
+  color: var(--bg-alt);
+  transition: 0.5s;
 }
 
 /* DEMO */

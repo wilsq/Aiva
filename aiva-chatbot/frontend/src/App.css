@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: gainsboro;
+  background-color: var(--bg-alt);
   display: flex;
   flex-direction: column;
 }
@@ -16,8 +16,8 @@ h1 {
 }
 
 .navbar {
-  background-color: darkgray;
-  color: white;
+  background-color: var(--bg);
+  color: var(--text);
   margin: 0;
   padding: 0;
 }
@@ -38,6 +38,7 @@ h1 {
   margin: 10px;
 }
 
+/* Tämä ei taida tehdä mitään? */
 .chat {
   background-color: white;
   border-radius: 8px;

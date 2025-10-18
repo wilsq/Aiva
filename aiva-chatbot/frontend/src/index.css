@@ -1,21 +1,64 @@
+/* :root-pseudoluokka hallinoi koko sivuston tyylejä. Ylikirjoitettavissa komponenttikohtaisesti. 
+Hyödyllinen oletusasetuksille ja teemamäärittelylle.
+tokenien muotoilu: --CSS-muuttuja: arvo; */
+
 :root {
+  /* dark theme tokenit - jos tumma teema valittu, käytetään näitä värejä (oletusasetus) */
+  color-scheme: dark;
+  --bg: #242424;
+  --bg-alt: rgb(49, 49, 49);
+  --bg-bubble-user: #33373b;
+  --bg-bubble-bot: #383535;
+  --text: rgba(255, 255, 255, 0.87);
+  --text-alt: #b8b7b7;
+  --button-bg: #1a1a1a;
+  --link: rgb(0, 18, 180);
+  --link-hover: #c9e1f1;
+  --highlight: #25242c;
+  --header: rgb(15, 49, 143);
+
+  /* typografia ja renderöinti */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text);
+  background-color: var(--bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* light theme tokenit - jos vaalea teema valittu, käytetään näitä värejä */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #ffffff;
+    --bg-alt: #eff2f1;
+    --bg-bubble-user: #d0d4d8;
+    --bg-bubble-bot: #e1e1e1;
+    --text: #0a1116;
+    --text-alt: #000000;
+    --button-bg: #f9f9f9;
+    --link: darkblue;
+    --link-hover: #b5d1f1;
+    --highlight: #2132f7;
+    --header: darkblue;
+  }
+}
+
+html {
+  color-scheme: light dark;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--link);
   text-decoration: inherit;
 }
 a:hover {
@@ -28,6 +71,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 h1 {
@@ -66,3 +111,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
