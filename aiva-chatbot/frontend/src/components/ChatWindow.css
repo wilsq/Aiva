@@ -27,11 +27,60 @@
 .chat-header {
   background-color: var(--header);
   color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 0;
   text-align: center;
   padding: 5px 0;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+}
+
+#chat-h2 {
+  margin:15px; 
+}
+
+.chat-button-icon {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+.chat-window-button {
+  background-color: darkblue;
+  color: white;
+  border-radius: 50%;
+  margin: 15px;
+}
+
+.chat-window-button:hover {
+  background-color: rgb(8, 8, 175);
+}
+
+.chat-window.collapsed {
+  height: 70px; 
+  width: 70px;
+  background-color: rgba(0, 0, 139, 0);
+  overflow: visible;
+}
+
+.chat-window.collapsed .chat-header {
+  background-color: rgba(255, 255, 255, 0)
+}
+
+.chat-window.collapsed .chat-window-button {
+  margin: 0;
+  background-color: rgb(75, 204, 255);
+}
+
+.chat-window.collapsed .chat-body,
+.chat-window.collapsed .chat-footer,
+.chat-window.collapsed .chat-header h2 {
+  display: none;
 }
 
 /*ikonin koon määrittely ja muokkaaminen pyöreäksi  */

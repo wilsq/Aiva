@@ -3,6 +3,7 @@ body {
   background-color: var(--bg-alt);
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 
@@ -11,8 +12,15 @@ h1 {
   margin-top: 40px;
 }
 
+h4 {
+  margin: 0px;
+}
+
 #root {
   width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -38,17 +46,11 @@ h1 {
   margin: 10px;
 }
 
-/* Tämä ei taida tehdä mitään? */
-.chat {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 5px black;
-  justify-content: center;
-}
 
 .App {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .tervetuloa {
@@ -87,4 +89,15 @@ ul {
   background-color: white;
   transform: translate(-3px);
   box-shadow: 2px 5px grey;
+}
+
+footer {
+  background-color: black;
+  color: white;
+}
+
+footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }

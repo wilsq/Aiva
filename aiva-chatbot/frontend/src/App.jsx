@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from "./components/Navbar"
 import ChatWindow from "./components/ChatWindow"
 import ProductSearch from './components/ProductSearch';
+import Footer from './components/footer';
 
 function App(){
   return (
@@ -19,7 +20,7 @@ function App(){
       <ChatWindow />
 
 
-
+      <Footer />
     </div>
   );
 }
