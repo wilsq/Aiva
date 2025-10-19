@@ -92,8 +92,12 @@ ul {
 }
 
 footer {
-  background-color: black;
-  color: white;
+  position: absolute;
+  bottom: 0;
+  height: 45px;
+  width: 100%;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 footer ul {

@@ -1,13 +1,15 @@
 //Komponentti chatbotin ikkunalle, jossa keskustelu käydään
 //Botille oma ikoni ja puhekupla (chat-message bot) ja käyttäjälle puhekupla (chat-message user)
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import "./ChatWindow.css";
 
 //Alikomponentit
 import ChatForm from "./ChatForm.jsx";
 import ChatMessage from "./ChatMessage.jsx";
+import ChatSettings from "./ChatSettings";
+import { useTheme } from "../hooks/useTheme";
 
 //Sivulla käytetyt kuvat ja ikonit
 import { SlArrowDown } from "react-icons/sl";
@@ -21,8 +23,50 @@ function ChatWindow() {
     setIsCollapsed((prev) => !prev);
   }
 
+  // Fullscreen
+  const rootRef = useRef(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const toggleFullscreen = async () => {
+    const el = rootRef.current;
+    if (!el) return;
+
+    if (document.fullscreenElement) {
+      try {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      } catch (err) {
+        console.warn('exitFullscreen failed', err);
+        el.classList.remove('cw-fullscreen');
+        document.body.classList.remove('chat-window-fullscreen');
+        setIsFullscreen(false);
+      }
+      return;
+    }
+
+    if (el.requestFullscreen) {
+      try {
+        await el.requestFullscreen();
+        setIsFullscreen(true);
+        setIsCollapsed(false);
+        return;
+      } catch (err) {
+        console.warn('requestFullscreen failed, falling back to CSS', err);
+      }
+    }
+
+    // CSS fallback fullscreenille - tätä käytetään, jos Fullscreen API ei ole saatavilla tai epäonnistuu
+    el.classList.add('cw-fullscreen');
+    document.body.classList.add('chat-window-fullscreen');
+    setIsFullscreen(true);
+    setIsCollapsed(false);
+  };
+
   //Muuttuja keskusteluhistorialle 
   const [chatHistory, setChatHistory] = useState([]);
+
+  // teema light dark hook
+  const { theme, toggleTheme } = useTheme();
 
     //haetaan backendin OpenAi apin kautta vastauksia tekoälyltä
     const generateBotResponse = async (userMessage) => {
@@ -44,17 +88,18 @@ function ChatWindow() {
 
   return (
     //Chat-ikkunan div, voidaan pienentää ja laajentaa keskustelualue
-    <div className={`chat-window ${isCollapsed ? "collapsed" : ""}`}>
+    <div ref={rootRef} className={`chat-window ${isCollapsed ? "collapsed" : ""} ${isFullscreen ? 'is-fullscreen' : ''}`}>
       <div className="chat-header">
         <h2 id="chat-h2">AIVA-chatbot</h2>
 
-        <button className="chat-window-button" onClick={toggleCollapse}>
-          {isCollapsed ? (
-            <img src={aivaIcon} alt="Aiva-bot" className="chat-button-icon" /> ) : (
-            <SlArrowDown />
-          )}
-        </button>
-
+        <ChatSettings
+          isCollapsed={isCollapsed}
+          onToggleCollapse={toggleCollapse}
+          isFullscreen={isFullscreen}
+          onToggleFullscreen={toggleFullscreen}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
       </div>
 
       {/* Keskustelun viestialue ja aloitusviesti*/}
@@ -80,6 +125,17 @@ function ChatWindow() {
           generateBotResponse={generateBotResponse}
         />
       </div>
+      {/* Chatin avaamispainike kun suljettu - käyttää Aiva-ikonia. */}
+      {isCollapsed && (
+        <button
+          className="chat-open-button"
+          onClick={toggleCollapse}
+          aria-label="Open chat"
+          title="Open chat"
+        >
+          <img src={aivaIcon} alt="Open chat" className="chat-open-icon" />
+        </button>
+      )}
     </div>
   );
 }

@@ -12,10 +12,11 @@ tokenien muotoilu: --CSS-muuttuja: arvo; */
   --text: rgba(255, 255, 255, 0.87);
   --text-alt: #b8b7b7;
   --button-bg: #1a1a1a;
+  --button-border: #646cff;
   --link: rgb(0, 18, 180);
   --link-hover: #c9e1f1;
   --highlight: #25242c;
-  --header: rgb(15, 49, 143);
+  --header: rgb(25, 104, 221);
 
   /* typografia ja renderöinti */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -34,9 +35,28 @@ tokenien muotoilu: --CSS-muuttuja: arvo; */
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* light theme tokenit - jos vaalea teema valittu, käytetään näitä värejä */
+/* light theme tokenit - jos vaalea teema valittu, käytetään näitä arvoja */
+:root[data-theme="light"],
+html[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-alt: #eff2f1;
+  --bg-bubble-user: #d0d4d8;
+  --bg-bubble-bot: #e1e1e1;
+  --text: #0a1116;
+  --text-alt: #000000;
+  --button-bg: #f9f9f9;
+  --button-border: #1a1a1a;
+  --link: darkblue;
+  --link-hover: #b5d1f1;
+  --highlight: #2132f7;
+  --header: darkblue;
+
+  color-scheme: light;
+}
+
+/* light theme tokenit - jos käyttäjän JÄRJESTELMÄ käyttää vaaleaa teemaa, käytetään oletusarvoisesti näitä arvoja */
 @media (prefers-color-scheme: light) {
-  :root {
+  :root[data-theme="light"] {
     color-scheme: light;
     --bg: #ffffff;
     --bg-alt: #eff2f1;
@@ -45,6 +65,7 @@ tokenien muotoilu: --CSS-muuttuja: arvo; */
     --text: #0a1116;
     --text-alt: #000000;
     --button-bg: #f9f9f9;
+    --button-border: #1a1a1a;
     --link: darkblue;
     --link-hover: #b5d1f1;
     --highlight: #2132f7;
@@ -52,15 +73,12 @@ tokenien muotoilu: --CSS-muuttuja: arvo; */
   }
 }
 
-html {
-  color-scheme: light dark;
-}
-
 a {
   font-weight: 500;
   color: var(--link);
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -91,24 +109,12 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: var(--button-border);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
