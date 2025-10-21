@@ -155,15 +155,23 @@
 /*Keskustelualueen paikan ja ulkonäön määrittelyä */
 
 .chat-footer {
+  display: flex;
   position: absolute;
   bottom: 0;
-  width: 90%;
+  width: 100%;
   background: var(--bg);
-  padding: 15px 20px;
   border-radius: 15px;
 }
 
-.chat-footer .chat-form {
+.chat-footer {
+  display: flex;
+  align-items: center;
+  outline: 1px solid #08913c;
+  border-radius: 15px;
+}
+
+.chat-form {
+
   display: flex;
   align-items: center;
   outline: 1px solid #cccce5;
@@ -180,15 +188,18 @@
 }
 
 .chat-button {
-  position: fixed;
-  bottom: 37px;
-  right: 43px;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+
   background-color: var(--bg-alt);
   color: var(--text-alt);
   border: none;
+
   height: 40px;
   width: 40px;
   border-radius: 50%;
+
   cursor: pointer;
   display: flex;
   align-items: center;
