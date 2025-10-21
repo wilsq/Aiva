@@ -73,6 +73,7 @@ html[data-theme="light"] {
   }
 }
 
+
 a {
   font-weight: 500;
   color: var(--link);
@@ -91,6 +92,8 @@ body {
   min-height: 100vh;
   background-color: var(--bg);
   color: var(--text);
+
+  transition: color 0.5s, background-color 0.5s;
 }
 
 h1 {
