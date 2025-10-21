@@ -1,10 +1,18 @@
 /*chatbotin keskustelualueen koon ja ulkonäön määrittely */
+@media only screen and (max-width: 600px) {
+  .chat-window{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    max-width: max-content;
+  }
+}
+
 .chat-window {
   position: fixed;
   bottom: 50px;
   right: 20px;
-  width: 95%;
-  max-width: 1000px;
+  width: clamp(300px, 100%, 1000px);
   background-color: var(--bg);
   border-radius: 16px;
   padding: 0px;
@@ -145,6 +153,7 @@
 }
 
 /*Keskustelualueen paikan ja ulkonäön määrittelyä */
+
 .chat-footer {
   position: absolute;
   bottom: 0;
