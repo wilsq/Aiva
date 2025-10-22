@@ -1,15 +1,23 @@
 /*chatbotin keskustelualueen koon ja ulkonäön määrittely */
+@media only screen and (max-width: 600px) {
+  .chat-window{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    max-width: max-content;
+  }
+}
+
 .chat-window {
   position: fixed;
-  bottom: 20px;
+  bottom: 50px;
   right: 20px;
-  width: 95%;
-  max-width: 1000px;
-  background-color: white;
+  width: clamp(300px, 100%, 1000px);
+  background-color: var(--bg);
   border-radius: 16px;
   padding: 0px;
   margin: 0;
-  color: black;
+  color: var(--text-alt);
 }
 
 .chat-body {
@@ -25,13 +33,82 @@
 }
 
 .chat-header {
-  background-color: darkblue;
-  color: white;
+  background-color: var(--header);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 0;
   text-align: center;
   padding: 5px 0;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+}
+
+#chat-h2 {
+  margin:15px; 
+}
+
+.chat-button-icon {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+/* K:lle muistutus - tsekkaa tekeekö nämä enää mitään!! */
+
+.chat-window.collapsed {
+  height: 70px; 
+  width: 70px;
+  background-color: rgba(0, 0, 139, 0);
+  overflow: visible;
+}
+
+.chat-window.collapsed .chat-header {
+  background-color: rgba(255, 255, 255, 0)
+}
+
+.chat-window.collapsed .chat-window-button {
+  margin: 0;
+  background-color: transparent;
+}
+
+.chat-window.collapsed .chat-body,
+.chat-window.collapsed .chat-footer,
+.chat-window.collapsed .chat-header h2 {
+  display: none;
+}
+
+/* piilota headerin asetukset, kun chat on pienennetty */
+.chat-window.collapsed .chat-settings { display: none; }
+
+/* Avaa chat - Aiva-ikoni */
+.chat-open-button {
+  position: fixed;
+  right: 22px;
+  bottom: 56px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  z-index: 10005;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-open-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
 
 /*ikonin koon määrittely ja muokkaaminen pyöreäksi  */
@@ -66,26 +143,35 @@
 }
 
 .bot-bubble {
-  background-color: #f0f0f0;
+  background-color: var(--bg-bubble-bot);
   margin-left: 5px;
 }
 
 .user-bubble {
-  background-color: #b5d1f1;
+  background-color: var(--bg-bubble-user);
   margin-right: 8px;
 }
 
 /*Keskustelualueen paikan ja ulkonäön määrittelyä */
+
 .chat-footer {
+  display: flex;
   position: absolute;
   bottom: 0;
-  width: 90%;
-  background: white;
-  padding: 15px 20px;
+  width: 100%;
+  background: var(--bg);
   border-radius: 15px;
 }
 
-.chat-footer .chat-form {
+.chat-footer {
+  display: flex;
+  align-items: center;
+  outline: 1px solid #08913c;
+  border-radius: 15px;
+}
+
+.chat-form {
+
   display: flex;
   align-items: center;
   outline: 1px solid #cccce5;
@@ -102,15 +188,18 @@
 }
 
 .chat-button {
-  position: fixed;
-  bottom: 37px;
-  right: 43px;
-  background-color: darkblue;
-  color: white;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+
+  background-color: var(--bg-alt);
+  color: var(--text-alt);
   border: none;
+
   height: 40px;
   width: 40px;
   border-radius: 50%;
+
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -118,7 +207,9 @@
 }
 
 .chat-button:hover {
-  background-color: #b5d1f1;
+  background-color: var(--text-alt);
+  color: var(--bg-alt);
+  transition: 0.5s;
 }
 
 /* DEMO */
@@ -128,3 +219,56 @@
 }
 
 /* DEMO */
+
+/* Chat-asetuspainikkeiden "säiliö" */
+.chat-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 12px;
+}
+
+.chat-settings-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--button-border);
+  background: var(--button-bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.08s;
+  font-size: 16px;
+  padding: 0;
+}
+
+.chat-settings-btn:hover { background: rgba(255,255,255,0.03); }
+.chat-settings-btn:active { transform: translateY(1px); }
+.chat-settings-btn:focus { outline: 3px solid var(--button-border, #646cff); outline-offset: 2px; }
+
+/* simuloitu fullscreen */
+.chat-window.cw-fullscreen,
+.chat-window.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  border-radius: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.chat-window.cw-fullscreen .chat-body,
+.chat-window.is-fullscreen .chat-body {
+  overflow: auto;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+/* estä taustasivun vieritys */
+body.chat-window-fullscreen { overflow: hidden; }

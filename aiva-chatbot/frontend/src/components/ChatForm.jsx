@@ -1,23 +1,36 @@
+//Chat-form-komponentti tallentaa käyttäjän syötteen ja hakee tekoälyltä tietoa
 import { useRef } from "react";
 
 const ChatForm = ({ chatHistory, setChatHistory, generateBotResponse }) => {
-    const inputRef = useRef();
+    const inputRef = useRef(); //UseRef viittaa input-kenttään
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
+        //haetaan käyttäjän syöte input-kentästä 
         const userMessage = inputRef.current.value.trim();
         if(!userMessage) return;
+
+        //tyhjentää inputin
         inputRef.current.value = "";
 
         //Päivittää chatkeskustelun käyttäjän syötteellä
-        setChatHistory((history) => [...history, { role: "user", text: userMessage}]);
+        setChatHistory((prev) => [...prev, { role: "user", text: userMessage}]);
 
-        //Asettaa botin vastauksen, tällä hetkellä placeholder-teksti
-        setTimeout(() => {
-            setChatHistory((history) => [...history, {role: "model", text: "Anna kun mietin hetken..." }]);
-            //funktio botin vastauksen hakemiseksi, nyt vielä ei ole tehty
-            generateBotResponse([...chatHistory, { role: "user", text: userMessage}]);
-        }, 600);
+        //Asettaa botin vastauksen
+        //Aiva miettii hetken, asetetaan miettimisviesti keskusteluhistoriaan
+        const miettiiViesti = { role: "bot", text: "Anna kun mietin hetken..."}
+        setChatHistory((prev) => [...prev, miettiiViesti]);
+
+        //funktio botin vastauksen hakemiseksi tekoälyltä
+        const tekoalyVastaus = await generateBotResponse(userMessage); 
+
+        //korvataan keskusteluhistoriassa miettii-teksti ai:n vastauksella, jottei miettii-viesti jäisi keskusteluun pysyvästi näkyville
+        setChatHistory((prev) => {
+            const updated = [...prev];
+            updated[updated.length -1] = { role: "bot", text: tekoalyVastaus };
+            return updated;
+        });
+
     };
 
     return (

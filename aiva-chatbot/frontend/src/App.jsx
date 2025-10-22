@@ -3,11 +3,12 @@ import './App.css';
 import Navbar from "./components/Navbar"
 import ChatWindow from "./components/ChatWindow"
 import ProductSearch from './components/ProductSearch';
+import Footer from './components/footer';
 
 function App(){
   return (
     <div className='App'>
-      <Navbar />
+      <Navbar/>
 
       <div className='tervetuloa'>
       <h1>Tuotteet</h1>
@@ -19,7 +20,7 @@ function App(){
       <ChatWindow />
 
 
-
+      <Footer />
     </div>
   );
 }
