@@ -71,7 +71,7 @@ function ChatWindow() {
     //haetaan backendin OpenAi apin kautta vastauksia tekoälyltä
     const generateBotResponse = async (userMessage) => {
       try {
-        const response = await fetch("http://localhost:5000/api/openai/ping", {
+        const response = await fetch("http://localhost:5000/api/chat/search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: userMessage }),
@@ -79,11 +79,23 @@ function ChatWindow() {
 
         //Tekoälyn vastaus ja jos tulee virhe, niin tulostetaan virheviesti
         const data = await response.json();
-        return data.reply
-      } catch (error) {
-        console.error("Virhe OpenAi-yhteydessä", error);
-        return "Virhe yhteydessä palvelimeen";
-      }
+        const { criteria, count, products = [] } = data;
+
+        // jos ei brändiä tunnistettu
+        if (!criteria?.brand) {
+          return "En tunnistanut brändiä. Kokeile esim. 'Näytä LG:n televisiot'.";
+        }
+        if (count === 0) {
+          return `Ei löytynyt tuotteita brändille ${criteria.brand}.`;
+        }
+
+        // pieni tiivis vastaus
+        const examples = products.slice(0, 2).map((p) => `${p.name} (${p.price} €)`);
+        return `Löytyi ${count} tuotetta (${criteria.brand}). Esim: ${examples.join(" · ")}`;
+        } catch (error) {
+          console.error("Virhe OpenAi-yhteydessä", error);
+          return "Virhe yhteydessä palvelimeen";
+        }
 };
 
   return (
