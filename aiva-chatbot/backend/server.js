@@ -5,21 +5,27 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import OpenAI from "openai";
+import chatRoutes from "./chatRoutes.js";  
+import { Product } from "./models/productModel.js";
+
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api", chatRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
 // Schema & Model
 
-const productSchema = new mongoose.Schema({
+/* const productSchema = new mongoose.Schema({
   name: String,
   description: String,
   price: Number,
-});
+}); */
+
 
 // Näillä voi testata Postmanilla että yhteydet toimii
 
@@ -73,7 +79,7 @@ app.post("/api/openai/ping", async (req, res) => {
 
 // Yksinkertainen haku tuotteille
 
-app.get("/api/search", async (req, res) => {
+/* app.get("/api/search", async (req, res) => {
   try {
     const { sizeMin, panel, budgetMax } = req.query;
     const q = {};
@@ -87,7 +93,7 @@ app.get("/api/search", async (req, res) => {
   }
 });
 
-const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema); */
 
 // API-reitti tuotteen hakemiseen nimen perusteella
 
