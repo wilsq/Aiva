@@ -72,38 +72,46 @@ ul {
 }
 
 .tuotelista {
-  border: 2px solid black;
+  background-color: white;
+  box-shadow: 3px 2px 5px black;
   margin: 20px 5px;
   padding: 5px;
   border-radius: 15px;
+  overflow: hidden;
 }
 
-.tuloskortti {
-  margin: 5px;
-  padding: 5px;
-  display: inline-block;
+.tuotekaruselli {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto; /*sivuttaisskrollauksen mahdollistaminen*/
 }
+
+/*scrollbar pieneksi, että olisi huomaamaton*/
+.tuotekaruselli::-webkit-scrollbar { 
+  height: 8px;
+}
+
 
 .tulos {
-  border: 1px solid black;
+  background-color: aliceblue;
   padding: 5px;
-  box-shadow: 2px 2px black;
+  margin: 10px;
+  box-shadow: 2px 2px 5px black;
 }
 
 .tulos:hover {
   color: darkblue;
-  background-color: white;
+  background-color: rgb(199, 208, 240);
   transform: translate(-3px);
   box-shadow: 2px 5px grey;
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   height: 45px;
   width: 100%;
   background-color: var(--bg);
   color: var(--text);
+  margin-top: auto;
 }
 
 footer ul {

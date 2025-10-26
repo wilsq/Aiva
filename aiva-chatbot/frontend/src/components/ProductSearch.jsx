@@ -1,6 +1,7 @@
 
 /* haku toiminto*/
 import React, { useState } from "react";
+import ProductList from "./ProductList";
 
 
 function ProductSearch() {
@@ -36,19 +37,7 @@ async function handleFetch() {
 
 
     {Array.isArray(result) && result.length > 0 ? (
-          <div className="tuotelista">
-            <h2>Löydetyt tuotteet</h2>
-            <ul>
-                {result.map((item, index) => (
-                    <div className="tuloskortti">
-                    <li key={index} className="tulos">
-                        <strong>{item.name}</strong> <br />
-                        <span>Hinta: {item.price}</span>
-                    </li>
-                    </div>
-            ))}
-            </ul>
-          </div>
+      <ProductList products={result} />
         ) : result && result.message ? (
           <div className="mt-4 p-4 border rounded result-box">
             <p>{result.message}</p>
