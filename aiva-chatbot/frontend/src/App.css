@@ -29,6 +29,9 @@ h4 {
   flex-direction: column;
 }
 
+
+/*TAUSTASIVUN NAVBARIN ASETUKSET*/
+
 .navbar {
   background-color: var(--bg);
   color: var(--text);
@@ -67,17 +70,40 @@ ul {
   list-style: none;
 }
 
+
+/*TUOTEHAUN ASETUKSIA */
 .productsearch {
   margin: 5px;
+}
+
+.hakutuloskentta {
+  background-color: rgb(186, 215, 252);
+  padding: 10px;
 }
 
 .tuotelista {
   background-color: white;
   box-shadow: 3px 2px 5px black;
   margin: 20px 5px;
-  padding: 5px;
+  padding: 15px 7px;
   border-radius: 15px;
   overflow: hidden;
+}
+
+.tulos {
+  background-color: aliceblue;
+  padding: 5px;
+  margin: 10px;
+  box-shadow: 1px 1px 3px black;
+  min-width: 120px;
+  min-height: 150px;
+}
+
+.tulos:hover {
+  color: darkblue;
+  background-color: rgb(208, 217, 252);
+  transform: translate(-3px);
+  box-shadow: 2px 2px 3px black;
 }
 
 .tuotekaruselli {
@@ -86,25 +112,13 @@ ul {
   overflow-x: auto; /*sivuttaisskrollauksen mahdollistaminen*/
 }
 
-/*scrollbar pieneksi, että olisi huomaamaton*/
+/*scrollbar pieneksi, että olisi huomaamaton tuotekarusellissa*/
 .tuotekaruselli::-webkit-scrollbar { 
   height: 8px;
 }
 
 
-.tulos {
-  background-color: aliceblue;
-  padding: 5px;
-  margin: 10px;
-  box-shadow: 2px 2px 5px black;
-}
-
-.tulos:hover {
-  color: darkblue;
-  background-color: rgb(199, 208, 240);
-  transform: translate(-3px);
-  box-shadow: 2px 5px grey;
-}
+/* TAUSTASIVUN FOOTERIN ASETUKSET*/
 
 footer {
   height: 45px;

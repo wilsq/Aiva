@@ -37,7 +37,10 @@ async function handleFetch() {
 
 
     {Array.isArray(result) && result.length > 0 ? (
-      <ProductList products={result} />
+        <div class="hakutuloskentta">
+          <h4>Löydetyt tuotteet:</h4>
+          <ProductList products={result} />
+        </div>
         ) : result && result.message ? (
           <div className="mt-4 p-4 border rounded result-box">
             <p>{result.message}</p>

@@ -89,9 +89,11 @@ function ChatWindow() {
           return `Ei löytynyt tuotteita brändille ${criteria.brand}.`;
         }
 
-        // pieni tiivis vastaus
-        const examples = products.slice(0, 2).map((p) => `${p.name} (${p.price} €)`);
-        return `Löytyi ${count} tuotetta (${criteria.brand}). Esim: ${examples.join(" · ")}`;
+        // asetetaan tekstivastaus
+        // const examples = products.slice(0, 2).map((p) => `${p.name} (${p.price} €)`);
+        const text = `Löytyi ${count} tuotetta (${criteria.brand}). Tuotteet näkyvät alla olevassa listassa.`;
+
+        return { text, products};
         } catch (error) {
           console.error("Virhe OpenAi-yhteydessä", error);
           return "Virhe yhteydessä palvelimeen";

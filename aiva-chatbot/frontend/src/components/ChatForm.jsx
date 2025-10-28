@@ -24,10 +24,15 @@ const ChatForm = ({ chatHistory, setChatHistory, generateBotResponse }) => {
         //funktio botin vastauksen hakemiseksi tekoälyltä
         const tekoalyVastaus = await generateBotResponse(userMessage); 
 
+        //tarkistetaan tekoälyn vastaus, jos on tuotteita, niin vastaus palautetaan objektina, ja jos ei niin vastaus on pelkkä teksti
+        const isObject = tekoalyVastaus && typeof tekoalyVastaus === "object";
+        const responseText = isObject ? tekoalyVastaus.text : tekoalyVastaus;
+        const responseProduct = isObject ? tekoalyVastaus.products : [];
+
         //korvataan keskusteluhistoriassa miettii-teksti ai:n vastauksella, jottei miettii-viesti jäisi keskusteluun pysyvästi näkyville
         setChatHistory((prev) => {
             const updated = [...prev];
-            updated[updated.length -1] = { role: "bot", text: tekoalyVastaus };
+            updated[updated.length -1] = { role: "bot", text: responseText, products: responseProduct };
             return updated;
         });
 
