@@ -7,7 +7,6 @@ function ProductList({products}) {
 
     return (
           <div className="tuotelista">
-            <h2>Löydetyt tuotteet</h2>
             <div className="tuotekaruselli">
                 {products.map((item, index) => (
                     <div key={index} className="tulos">
