@@ -90,6 +90,7 @@ ul {
   overflow: hidden;
 }
 
+
 .tulos {
   background-color: aliceblue;
   padding: 5px;
@@ -115,6 +116,24 @@ ul {
 /*scrollbar pieneksi, että olisi huomaamaton tuotekarusellissa*/
 .tuotekaruselli::-webkit-scrollbar { 
   height: 8px;
+}
+
+/*Yksittäisen tuotenäkymän ikkuna */
+
+.takaisinNappula {
+  background-color: darkblue;
+  color: white;
+}
+
+.takaisinNappula:hover {
+  background-color: rgb(0, 54, 154);
+}
+
+.tuotenakyma {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 15px;
+  background-image: linear-gradient(rgb(41, 76, 251), rgb(154, 179, 242), aliceblue );
 }
 
 
