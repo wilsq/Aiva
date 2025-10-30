@@ -18,15 +18,6 @@ app.use("/api", chatRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-// Schema & Model
-
-/* const productSchema = new mongoose.Schema({
-  name: String,
-  description: String,
-  price: Number,
-}); */
-
-
 // Näillä voi testata Postmanilla että yhteydet toimii
 
 // Testataan onko serveri pystyssä, GET antaa vaan ok vastauksen jos kaikki toimii: http://localhost:5000/api/health
@@ -76,24 +67,6 @@ app.post("/api/openai/ping", async (req, res) => {
     });
   }
 });
-
-// Yksinkertainen haku tuotteille
-
-/* app.get("/api/search", async (req, res) => {
-  try {
-    const { sizeMin, panel, budgetMax } = req.query;
-    const q = {};
-    if (sizeMin) q.sizeInches = { $gte: Number(sizeMin) };
-    if (panel) q.displayType = String(panel);
-    if (budgetMax) q.price = { $lte: Number(budgetMax) };
-    const products = await Product.find(q).limit(5).lean();
-    res.json(products);
-  } catch (e) {
-    res.status(500).json({ error: "Search failed" });
-  }
-});
-
-const Product = mongoose.model("Product", productSchema); */
 
 // API-reitti tuotteen hakemiseen nimen perusteella
 
