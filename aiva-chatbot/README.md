@@ -1,18 +1,34 @@
-# React + Vite
+# Aiva Chatbot - Kouluprojekti
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Yleiskuvaus
 
-Currently, two official plugins are available:
+Aiva on kouluprojekti, jossa rakennetaan full-stack chatbot-sovellus. Chatbot hyödyntää **OpenAI API:a** tekoälyvastausten tuottamiseen. Frontend on toteutettu **Reactilla (Vite)** ja backend **Node.js + Express + MongoDB (Mongoose)** -tekniikoilla. Sovelluksessa käyttäjä voi hakea tuotteita, keskustella chatbotin kanssa ja tarkastella MongoDB-tietokannasta haettua tuotetietoa.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🗂 Projektin kansiorakenne
 
-## React Compiler
+```
+Aiva-chatbot/
+├─ backend/        # Node.js, Express, MongoDB
+│  ├─ server.js
+│  ├─ models/
+│  ├─ routes/
+│  └─ .env
+├─ frontend/       # React (Vite)
+│  ├─ src/
+│  ├─ App.jsx
+│  └─ index.css
+└─ README.md
+```
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## ⚙️ Käytetyt teknologiat
 
-Note: This will impact Vite dev & build performances.
+| Kerros     | Teknologiat                    |
+| ---------- | ------------------------------ |
+| Frontend   | React (Vite), JavaScript,      |
+| Backend    | Node.js, Express, CORS, dotenv |
+| Tietokanta | MongoDB Atlas, Mongoose        |
+| AI         | OpenAI API                     |
+| Työkalut   | Git, Nodemon, npm              |
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Tekijät:
+Kauri Haltsonen, Veera Kettunen, Mikael Lönnberg, Viljami Viinikainen
