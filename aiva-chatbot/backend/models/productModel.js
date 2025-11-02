@@ -24,6 +24,9 @@ const productSchema = new mongoose.Schema(
     // Hinta
     price: { type: Number, required: true }, // esim. 629
 
+    // Kuva
+    imageUrl: { type: String }, // Kuvan URL
+
     // Ominaisuudet listana (esim. HDR, Local Dimming jne.)
     features: [{ type: String }],
 
@@ -40,4 +43,5 @@ const productSchema = new mongoose.Schema(
 // 2. Luodaan malli (Model) vain jos sitä ei ole jo olemassa
 //    Kolmas parametri "products" varmistaa, että käytetään täsmälleen oikeaa kokoelmaa (AivaDB.products)
 export const Product =
-  mongoose.models.Product || mongoose.model("Product", productSchema, "products");
+  mongoose.models.Product ||
+  mongoose.model("Product", productSchema, "products");
