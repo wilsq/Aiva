@@ -80,19 +80,34 @@ function ChatWindow() {
         //Tekoälyn vastaus ja jos tulee virhe, niin tulostetaan virheviesti
         const data = await response.json();
         const { criteria, count, products = [] } = data;
+        console.log("Hakusanat backendistä: ", criteria);
 
         // jos ei brändiä tunnistettu
-        if (!criteria?.brand) {
+        /*if (!criteria?.brand) {
           return "En tunnistanut brändiä. Kokeile esim. 'Näytä LG:n televisiot'.";
+        }*/
+
+        //jos ei tunnista hakusanoja tai millään hakusanalla ei löydy tuotteita
+        if (!criteria) {
+          return "En tunnistanut antamiasia hakuehtoja. Kokeile esim. 'Näytä xxxx'.";
         }
         if (count === 0) {
-          return `Ei löytynyt tuotteita brändille ${criteria.brand}.`;
+          let hakusanat = [];
+          if (criteria.brand) hakusanat.push(criteria.brand);
+          if (criteria.budgetMax) hakusanat.push(`alle ${criteria.budgetMax} €`);
+          return `Ei löytynyt tuotteita (${hakusanat.join(", ")}).`;
         }
+
+        //hakusanat
+        let hakusanat = [];
+        if (criteria.brand) hakusanat.push(criteria.brand);
+        if (criteria.budgetMax) hakusanat.push(`alle ${criteria.budgetMax} €`);
 
         // asetetaan tekstivastaus
         // const examples = products.slice(0, 2).map((p) => `${p.name} (${p.price} €)`);
-        const text = `Löytyi ${count} tuotetta (${criteria.brand}). Tuotteet näkyvät alla olevassa listassa.`;
+        const text = `Löytyi ${count} tuotetta (${hakusanat.join(", ")}). Tuotteet näkyvät alla olevassa listassa.`;
 
+        //palautetaan objekti, jossa tekstivastaus ja tuotteet
         return { text, products};
         } catch (error) {
           console.error("Virhe OpenAi-yhteydessä", error);
