@@ -54,6 +54,8 @@ async function extractCriteriaWithAI(message) {
       - Hinta euroissa. Palauta pelkkä numero ilman €-merkkiä, esim. "alle 800€" -> 800.
       - Ranges tulkitaan: "50–55 tuumaa" -> sizeMin=50, sizeMax=55. "vähintään 55" -> sizeMin=55.
       - Jos arvoa ei mainita, palauta null.
+      - Jos viestissä mainitaan YKSI koko ilman tarkenteita (esim. "55 tuumainen", "55\""), tulkitse se TARKAKSI kooksi: aseta sizeMin = sizeMax = 55.
+      - Jos käytetään tarkenteita ("vähintään", "yli", "alle", "enintään"), käytä rangea normaalisti.
       - Hyväksy suomen taivutukset: "Samsungin", "LG:n", "viiskytviis tuumaa", "alle tonnin".
       - Tunnetut brändit: LG, Samsung, Sony, Philips, TCL, Thomson.
       - ÄLÄ lisää mitään muuta tekstiä ennen tai jälkeen JSONin.
@@ -137,6 +139,11 @@ function normalizeCriteriaJSON(raw) {
   const sizeRange = normalizeSizeRange(parsed.sizeMin, parsed.sizeMax);
   parsed.sizeMin = sizeRange.sizeMin;
   parsed.sizeMax = sizeRange.sizeMax;
+
+  // Fallback: jos vain yksi koko, käytä sitä molempiin
+   if (parsed.sizeMin != null && parsed.sizeMax == null) {
+    parsed.sizeMax = parsed.sizeMin;
+  }
 
   return parsed;
 }
