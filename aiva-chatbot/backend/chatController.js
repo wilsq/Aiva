@@ -1,1 +1,0 @@
-//Chat-logiikka, OpenAI API

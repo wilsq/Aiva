@@ -10,7 +10,7 @@
 
 
 .tuotenakyma img {
-  max-width: 100%;
+  max-width: 60%;
 }
 
 .chat-window {
@@ -275,6 +275,10 @@
   overflow: auto;
   flex: 1 1 auto;
   padding: 1rem;
+}
+
+.hide-settings {
+  display: none !important;
 }
 
 /* estä taustasivun vieritys */
