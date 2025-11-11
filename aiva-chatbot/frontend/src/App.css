@@ -112,7 +112,6 @@ ul {
   grid-template-columns: auto auto auto;
   grid-template-rows: 1fr;
   gap: 5px;
-  overflow: auto; /*sivuttaisskrollauksen mahdollistaminen*/
 }
 
 /*scrollbar pieneksi, että olisi huomaamaton tuotekarusellissa*/
