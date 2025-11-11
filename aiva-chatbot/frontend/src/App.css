@@ -108,9 +108,11 @@ ul {
 }
 
 .tuotekaruselli {
-  display: flex;
-  gap: 15px;
-  overflow-x: auto; /*sivuttaisskrollauksen mahdollistaminen*/
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 1fr;
+  gap: 5px;
+  overflow: auto; /*sivuttaisskrollauksen mahdollistaminen*/
 }
 
 /*scrollbar pieneksi, että olisi huomaamaton tuotekarusellissa*/
