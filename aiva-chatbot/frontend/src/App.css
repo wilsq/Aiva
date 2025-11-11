@@ -121,6 +121,10 @@ ul {
 
 /*Yksittäisen tuotenäkymän ikkuna */
 
+.tuotenakyma img {
+  max-width: 60%;
+}
+
 .tuotenakyma {
   display: grid;
   grid-template-columns: 1fr auto;
