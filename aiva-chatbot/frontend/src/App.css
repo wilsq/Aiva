@@ -106,7 +106,6 @@ ul {
 }
 
 .tuotekaruselli {
-  border: 2px solid brown;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   gap: 10px;

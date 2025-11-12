@@ -17,6 +17,9 @@ import aivaIcon from "../images/aiva.png";
 
 function ChatWindow() {
 
+  // Autoscroll sentinel
+  const bottomOfChat = useRef(null);
+
   //keskusteluikkunan pienentäminen ja laajentaminen
   const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleCollapse = () => {
@@ -64,6 +67,13 @@ function ChatWindow() {
 
   //Muuttuja keskusteluhistorialle 
   const [chatHistory, setChatHistory] = useState([]);
+
+  // Autoscroll whenever chatHistory updates
+  useEffect(() => {
+    if (bottomOfChat && bottomOfChat.current) {
+      bottomOfChat.current.scrollIntoView({ behavior: "smooth", block: "end"});
+    }
+  }, [chatHistory]);
 
   // teema light dark hook
   const { theme, toggleTheme } = useTheme();
@@ -144,6 +154,9 @@ function ChatWindow() {
         {chatHistory.map((chat, index) => (
           <ChatMessage key={index} chat={chat} />
         ))}
+
+        {/* Autoscroll sentinel div, this should be invisible */}
+        <div ref={bottomOfChat} />
       </div>
 
       {/* Keskustelualueen alaosassa on input-alue*/}
