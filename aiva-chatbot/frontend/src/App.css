@@ -82,9 +82,12 @@ ul {
 }
 
 .tuotelista {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
   background-color: white;
   box-shadow: 3px 2px 5px black;
-  margin: 20px 5px;
+  margin: 0 auto;
   padding: 15px 7px;
   border-radius: 15px;
   overflow: hidden;
@@ -96,8 +99,9 @@ ul {
   padding: 5px;
   margin: 10px;
   box-shadow: 1px 1px 3px black;
-  min-width: 120px;
-  min-height: 150px;
+
+  width: 120px;
+  height: 150px;
 }
 
 .tulos:hover {
@@ -108,10 +112,10 @@ ul {
 }
 
 .tuotekaruselli {
+  border: 2px solid brown;
   display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: 1fr;
-  gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  gap: 10px;
 }
 
 /*scrollbar pieneksi, että olisi huomaamaton tuotekarusellissa*/

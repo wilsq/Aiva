@@ -15,9 +15,9 @@ const ChatMessage = ({chat}) => {
             <div className={`chat-bubble ${chat.role === "bot" ? 'bot-bubble' : 'user-bubble'}`}>{chat.text}
                 {/*Jos vastauksessa palautetaan tuotteita, niin ne näytetään ProductListin mukaisesti*/}
                 {chat.products && chat.products.length > 0 && (
-                <div>
+                /*<div>*/
                     <ProductList products={chat.products} />
-                </div>
+                /*</div>*/
                 )}
             </div>
         </div>
