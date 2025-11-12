@@ -32,7 +32,7 @@ export default function ChatSettings({
 
       <button
         type="button"
-        className="chat-settings-btn"
+        className={`chat-settings-btn ${isFullscreen ? 'hide-settings' : ''}`}
         onClick={onToggleCollapse}
         aria-pressed={isCollapsed}
         aria-label={isCollapsed ? 'Expand chat' : 'Collapse chat'}
