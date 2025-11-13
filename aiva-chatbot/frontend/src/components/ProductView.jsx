@@ -6,7 +6,6 @@ function ProductView({ product, onBack }) {
 
   return (
     <div className="tuotenakyma">
-
       <div class="product-image-container">
         <img src={product.imageUrl} alt={product.name} />
       </div>
@@ -28,6 +27,9 @@ function ProductView({ product, onBack }) {
         <p>
           <strong>Kuvaus:</strong> {product.description}
         </p>
+        <a href={product.productUrl} target="_blank">
+          Katso valmistajan sivu
+        </a>
       </div>
 
       <div class="takaisinNappula-container">
@@ -35,7 +37,6 @@ function ProductView({ product, onBack }) {
           Takaisin
         </button>
       </div>
-
     </div>
   );
 }

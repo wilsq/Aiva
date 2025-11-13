@@ -27,6 +27,9 @@ const productSchema = new mongoose.Schema(
     // Kuva
     imageUrl: { type: String }, // Kuvan URL
 
+    // Tuote Url
+    productUrl: { type: String },
+
     // Ominaisuudet listana (esim. HDR, Local Dimming jne.)
     features: [{ type: String }],
 
