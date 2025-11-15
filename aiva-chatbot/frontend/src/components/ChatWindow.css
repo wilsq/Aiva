@@ -270,9 +270,9 @@
   padding: 0;
 }
 
-.chat-settings-btn:hover { background: rgba(255,255,255,0.03); }
+.chat-settings-btn:hover { background: var(--highlight); color: var(--universal-white); }
 .chat-settings-btn:active { transform: translateY(1px); }
-.chat-settings-btn:focus { outline: 3px solid var(--button-border, #646cff); outline-offset: 2px; }
+
 
 /* simuloitu fullscreen */
 .chat-window.cw-fullscreen,
