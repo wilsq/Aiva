@@ -1,8 +1,10 @@
-# Aiva Chatbot - Kouluprojekti
+# Aiva Chatbot
 
 ## 📌 Yleiskuvaus
 
 Aiva on kouluprojekti, jossa rakennetaan full-stack chatbot-sovellus. Chatbot hyödyntää **OpenAI API:a** tekoälyvastausten tuottamiseen. Frontend on toteutettu **Reactilla (Vite)** ja backend **Node.js + Express + MongoDB (Mongoose)** -tekniikoilla. Sovelluksessa käyttäjä voi hakea tuotteita, keskustella chatbotin kanssa ja tarkastella MongoDB-tietokannasta haettua tuotetietoa.
+
+Linkki appiin: https://aiva-tb4c.onrender.com
 
 ## 🗂 Projektin kansiorakenne
 
