@@ -79,7 +79,7 @@ ul {
   display: inline-block;
   width: 100%;
   box-sizing: border-box;
-  background-color: white;
+  background-color: var(--carousel-bg);
   box-shadow: 3px 2px 5px black;
   margin: 0 auto;
   padding: 15px 7px;
@@ -89,7 +89,8 @@ ul {
 
 
 .tulos {
-  background-color: aliceblue;
+  color: var(--card-text);
+  background-color: var(--card-bg);
   padding: 5px;
   margin: 10px;
   box-shadow: 1px 1px 3px black;

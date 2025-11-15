@@ -17,6 +17,10 @@ tokenien muotoilu: --CSS-muuttuja: arvo; */
   --link-hover: #c9e1f1;
   --highlight: #25242c;
   --header: rgb(25, 104, 221);
+  --card-text: white;
+  --card-bg: #222020;
+  --carousel-bg: #413e3e;
+  --universal-white: white;
 
   /* typografia ja renderöinti */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -50,6 +54,10 @@ html[data-theme="light"] {
   --link-hover: #b5d1f1;
   --highlight: #2132f7;
   --header: darkblue;
+  --card-text: black;
+  --card-bg: aliceblue;
+  --carousel-bg: white;
+  --universal-white: white;
 
   color-scheme: light;
 }
@@ -70,6 +78,10 @@ html[data-theme="light"] {
     --link-hover: #b5d1f1;
     --highlight: #2132f7;
     --header: darkblue;
+    --card-text: black;
+    --card-bg: aliceblue;
+    --carousel-bg: white;
+    --universal-white: white;
   }
 }
 
