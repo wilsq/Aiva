@@ -16,7 +16,6 @@ import { SlArrowDown } from "react-icons/sl";
 import aivaIcon from "../images/aiva.png";
 
 function ChatWindow() {
-
   // Autoscroll sentinel
   const bottomOfChat = useRef(null);
 
@@ -24,7 +23,7 @@ function ChatWindow() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleCollapse = () => {
     setIsCollapsed((prev) => !prev);
-  }
+  };
 
   // Fullscreen
   const rootRef = useRef(null);
@@ -39,9 +38,9 @@ function ChatWindow() {
         await document.exitFullscreen();
         setIsFullscreen(false);
       } catch (err) {
-        console.warn('exitFullscreen failed', err);
-        el.classList.remove('cw-fullscreen');
-        document.body.classList.remove('chat-window-fullscreen');
+        console.warn("exitFullscreen failed", err);
+        el.classList.remove("cw-fullscreen");
+        document.body.classList.remove("chat-window-fullscreen");
         setIsFullscreen(false);
       }
       return;
@@ -54,80 +53,90 @@ function ChatWindow() {
         setIsCollapsed(false);
         return;
       } catch (err) {
-        console.warn('requestFullscreen failed, falling back to CSS', err);
+        console.warn("requestFullscreen failed, falling back to CSS", err);
       }
     }
 
     // CSS fallback fullscreenille - tätä käytetään, jos Fullscreen API ei ole saatavilla tai epäonnistuu
-    el.classList.add('cw-fullscreen');
-    document.body.classList.add('chat-window-fullscreen');
+    el.classList.add("cw-fullscreen");
+    document.body.classList.add("chat-window-fullscreen");
     setIsFullscreen(true);
     setIsCollapsed(false);
   };
 
-  //Muuttuja keskusteluhistorialle 
+  //Muuttuja keskusteluhistorialle
   const [chatHistory, setChatHistory] = useState([]);
 
   // Autoscroll whenever chatHistory updates
   useEffect(() => {
     if (bottomOfChat && bottomOfChat.current) {
-      bottomOfChat.current.scrollIntoView({ behavior: "smooth", block: "end"});
+      bottomOfChat.current.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   }, [chatHistory]);
 
   // teema light dark hook
   const { theme, toggleTheme } = useTheme();
 
-    //haetaan backendin OpenAi apin kautta vastauksia tekoälyltä
-    const generateBotResponse = async (userMessage) => {
-      try {
-        const response = await fetch("http://localhost:5000/api/chat/search", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userMessage }),
-        });
+  // UUsi API URL
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-        //Tekoälyn vastaus ja jos tulee virhe, niin tulostetaan virheviesti
-        const data = await response.json();
-        const { criteria, count, products = [] } = data;
-        console.log("Hakusanat backendistä: ", criteria);
+  //haetaan backendin OpenAi apin kautta vastauksia tekoälyltä
+  const generateBotResponse = async (userMessage) => {
+    try {
+      const response = await fetch(`${API_URL}/api/chat/search`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage }),
+      });
 
-        // jos ei brändiä tunnistettu
-        /*if (!criteria?.brand) {
+      //Tekoälyn vastaus ja jos tulee virhe, niin tulostetaan virheviesti
+      const data = await response.json();
+      const { criteria, count, products = [] } = data;
+      console.log("Hakusanat backendistä: ", criteria);
+
+      // jos ei brändiä tunnistettu
+      /*if (!criteria?.brand) {
           return "En tunnistanut brändiä. Kokeile esim. 'Näytä LG:n televisiot'.";
         }*/
 
-        //jos ei tunnista hakusanoja tai millään hakusanalla ei löydy tuotteita
-        if (!criteria) {
-          return "En tunnistanut antamiasia hakuehtoja. Kokeile esim. 'Näytä xxxx'.";
-        }
-        if (count === 0) {
-          let hakusanat = [];
-          if (criteria.brand) hakusanat.push(criteria.brand);
-          if (criteria.budgetMax) hakusanat.push(`alle ${criteria.budgetMax} €`);
-          return `Ei löytynyt tuotteita (${hakusanat.join(", ")}).`;
-        }
-
-        //hakusanat
+      //jos ei tunnista hakusanoja tai millään hakusanalla ei löydy tuotteita
+      if (!criteria) {
+        return "En tunnistanut antamiasia hakuehtoja. Kokeile esim. 'Näytä xxxx'.";
+      }
+      if (count === 0) {
         let hakusanat = [];
         if (criteria.brand) hakusanat.push(criteria.brand);
         if (criteria.budgetMax) hakusanat.push(`alle ${criteria.budgetMax} €`);
+        return `Ei löytynyt tuotteita (${hakusanat.join(", ")}).`;
+      }
 
-        // asetetaan tekstivastaus
-        // const examples = products.slice(0, 2).map((p) => `${p.name} (${p.price} €)`);
-        const text = `Löytyi ${count} tuotetta (${hakusanat.join(", ")}). Tuotteet näkyvät alla olevassa listassa.`;
+      //hakusanat
+      let hakusanat = [];
+      if (criteria.brand) hakusanat.push(criteria.brand);
+      if (criteria.budgetMax) hakusanat.push(`alle ${criteria.budgetMax} €`);
 
-        //palautetaan objekti, jossa tekstivastaus ja tuotteet
-        return { text, products};
-        } catch (error) {
-          console.error("Virhe OpenAi-yhteydessä", error);
-          return "Virhe yhteydessä palvelimeen";
-        }
-};
+      // asetetaan tekstivastaus
+      // const examples = products.slice(0, 2).map((p) => `${p.name} (${p.price} €)`);
+      const text = `Löytyi ${count} tuotetta (${hakusanat.join(
+        ", "
+      )}). Tuotteet näkyvät alla olevassa listassa.`;
+
+      //palautetaan objekti, jossa tekstivastaus ja tuotteet
+      return { text, products };
+    } catch (error) {
+      console.error("Virhe OpenAi-yhteydessä", error);
+      return "Virhe yhteydessä palvelimeen";
+    }
+  };
 
   return (
     //Chat-ikkunan div, voidaan pienentää ja laajentaa keskustelualue
-    <div ref={rootRef} className={`chat-window ${isCollapsed ? "collapsed" : ""} ${isFullscreen ? 'is-fullscreen' : ''}`}>
+    <div
+      ref={rootRef}
+      className={`chat-window ${isCollapsed ? "collapsed" : ""} ${
+        isFullscreen ? "is-fullscreen" : ""
+      }`}
+    >
       <div className="chat-header">
         <h2 id="chat-h2">AIVA-chatbot</h2>
 
@@ -150,7 +159,7 @@ function ChatWindow() {
           </div>
         </div>
 
-        {/* Keskusteluhistorian renderöinti ja hyödynnetään ChatMessage-alakomponentin tietoja keskustelukuplien luomisessa*/}      
+        {/* Keskusteluhistorian renderöinti ja hyödynnetään ChatMessage-alakomponentin tietoja keskustelukuplien luomisessa*/}
         {chatHistory.map((chat, index) => (
           <ChatMessage key={index} chat={chat} />
         ))}

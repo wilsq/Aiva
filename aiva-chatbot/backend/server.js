@@ -5,16 +5,18 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import OpenAI from "openai";
-import chatRoutes from "./chatRoutes.js";  
+import chatRoutes from "./chatRoutes.js";
 import { Product } from "./models/productModel.js";
-
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+  })
+);
 app.use(express.json());
 app.use("/api", chatRoutes);
-
 
 const PORT = process.env.PORT || 5000;
 
@@ -22,7 +24,7 @@ const PORT = process.env.PORT || 5000;
 
 // Testataan onko serveri pystyssä, GET antaa vaan ok vastauksen jos kaikki toimii: http://localhost:5000/api/health
 
-app.get("/api/health", (_, res) => { 
+app.get("/api/health", (_, res) => {
   res.json({ ok: true });
 });
 
@@ -47,23 +49,28 @@ app.post("/api/openai/ping", async (req, res) => {
       model: "gpt-4o-mini", // Jostain syystä gpt-5-nano ei toiminut
       input: [
         { role: "system", content: "Vastaa yhdellä lyhyellä lauseella." },
-        { role: "user", content: msg }
+        { role: "user", content: msg },
       ],
-      max_output_tokens: 40            
+      max_output_tokens: 40,
     });
 
     // Helppokäyttöinen helper: yhdistää kaikki tekstit ulos
     const text = r.output_text?.trim() || "";
     res.json({ reply: text });
 
-    // Troubleshoottausta varten 
+    // Troubleshoottausta varten
   } catch (e) {
-    console.error("OpenAI ERROR:", e?.status, e?.message, e?.response?.data || e);
+    console.error(
+      "OpenAI ERROR:",
+      e?.status,
+      e?.message,
+      e?.response?.data || e
+    );
     res.status(500).json({
       error: "OpenAI error",
       status: e?.status || null,
       message: e?.message || null,
-      data: e?.response?.data || null
+      data: e?.response?.data || null,
     });
   }
 });
