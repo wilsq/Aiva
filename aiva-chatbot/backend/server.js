@@ -12,7 +12,9 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "https://aiva-tb4c.onrender.com"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 app.use(express.json());
