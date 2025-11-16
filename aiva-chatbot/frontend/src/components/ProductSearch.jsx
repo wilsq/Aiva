@@ -23,15 +23,15 @@ function ProductSearch() {
 
   return (
     <div className="productsearch">
-      <h3>Tuotehaku</h3>
+      <h4>Tuotehaku</h4>
       <input
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Kirjoita tuotteen nimi"
-        className="border p-2 m-2"
+        className="haku"
       />
-      <button onClick={handleFetch} className="bg-blue-500 text-white p-2">
+      <button onClick={handleFetch} className="hakunappula">
         Hae tuote
       </button>
 

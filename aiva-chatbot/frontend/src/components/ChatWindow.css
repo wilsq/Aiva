@@ -36,7 +36,7 @@
   position: fixed;
   bottom: 50px;
   right: 20px;
-  width: clamp(300px, 100%, 1000px);
+  width: clamp(300px, 90%, 1000px);
   background-color: var(--bg);
   border-radius: 16px;
   padding: 0px;
@@ -182,9 +182,10 @@
   display: flex;
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 95%;
   background: var(--bg);
   border-radius: 15px;
+  margin: 10px;
 }
 
 .chat-footer {
@@ -195,29 +196,25 @@
 }
 
 .chat-form {
-
+  width: 100%;
   display: flex;
   align-items: center;
-  outline: 1px solid #cccce5;
+  border: 1px solid #cccce5;
   border-radius: 15px;
-  width: 900px;
-  justify-content: left;
+  padding: 5px 10px;
+  background: var(--bg);
 }
 
 .chat-form .message-input {
+  flex: 1;
   border: none;
   outline: none;
-  width: 100%;
   padding: 10px;
   height: 45px;
   padding: 0 15px;
 }
 
 .chat-button {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-
   background-color: var(--bg-alt);
   color: var(--text-alt);
   border: none;
