@@ -46,7 +46,6 @@ h4 {
   display: flex;
   justify-content: center;
   list-style-type: none;
-  margin: 15px;
 }
 
 .navbar li {
@@ -61,30 +60,32 @@ h4 {
 }
 
 #projekti {
-  margin: 20px;
+  padding: 10px;
 }
 
 
 /*Ryhmän esittelyn asetukset */
 #esittelykappale {
   background-color: red;
+  padding: 15px;
 }
 
 #ryhma {
   background-color: pink;
-  padding: 10px;
+  padding: 15px;
   color: black;
 }
 
 .ryhmalaiset {
   display: flex;
   flex-wrap: wrap;
+  padding: 15px;
 }
 
 .hlo {
   border: double 1px black;
-  margin: 15px;
-  padding: 10px;
+  margin: 10px 5px;
+  max-width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,8 +93,9 @@ h4 {
 }
 
 .hlo_kuva {
-  width: 200px;
-  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
+  margin: 10px 5px;
 }
 
 .esittelyteksti {

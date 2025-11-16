@@ -28,7 +28,7 @@ function App(){
           </li>
           <li className='hlo'>
             <h3>Veera</h3>
-            <p className='esittelyteksti'>Olen wannabe-it-nörtti sosiaalialalta, joka vasta ihmettelee ja opettelee koodaamista. Tällä hetkellä erikoisalana on spaghettikoodin tekeminen ja toimivien ratkaisujen rikkominen. Tulevaisuuden haaveena olisi erilaisten digitaalisten palveluiden ja sovellusten kehittäminen sote-alalle.</p>
+            <p className='esittelyteksti'>Olen wannabe-it-nörtti sosiaalialalta, joka vasta ihmettelee ja opettelee koodaamista. Tällä hetkellä erikoisalana on spaghettikoodin tekeminen ja toimivien ratkaisujen rikkominen. Tulevaisuudessa tavoitteeni on kehittää digitaalisia palveluita ja sovelluksia, jotka helpottavat sote-alan työtä.</p>
             <img src={Veera_avatar} alt='blond-haired woman coding' className='hlo_kuva' />          
           </li>
           <li className='hlo'>

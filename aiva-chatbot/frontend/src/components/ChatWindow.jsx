@@ -107,6 +107,19 @@ function ChatWindow() {
         let hakusanat = [];
         if (criteria.brand) hakusanat.push(criteria.brand);
         if (criteria.budgetMax) hakusanat.push(`alle ${criteria.budgetMax} €`);
+        //tuumakokojen tulostuslogiikka, onko haku tietyltä väliltä vai onko onko tietty koko
+        if (criteria.sizeMin && criteria.sizeMax) {
+          if (criteria.sizeMin === criteria.sizeMax) {
+            hakusanat.push(`koko ${criteria.sizeMin}”`);
+          } else {
+            hakusanat.push(`koko ${criteria.sizeMin}”-${criteria.sizeMax}”`);
+          } 
+        } else if (criteria.sizeMin) {
+            hakusanat.push(`koko yli ${criteria.sizeMin}”`);
+          } else if (criteria.sizeMax) {
+            hakusanat.push(`koko alle ${criteria.sizeMax}”`);
+          }
+
         return `Ei löytynyt tuotteita (${hakusanat.join(", ")}).`;
       }
 
@@ -114,6 +127,17 @@ function ChatWindow() {
       let hakusanat = [];
       if (criteria.brand) hakusanat.push(criteria.brand);
       if (criteria.budgetMax) hakusanat.push(`alle ${criteria.budgetMax} €`);
+      if (criteria.sizeMin && criteria.sizeMax) {
+      if (criteria.sizeMin === criteria.sizeMax) {
+        hakusanat.push(`koko ${criteria.sizeMin}”`);
+      } else {
+        hakusanat.push(`koko ${criteria.sizeMin}”-${criteria.sizeMax}”`);
+      }
+    } else if (criteria.sizeMin) {
+      hakusanat.push(`koko yli ${criteria.sizeMin}”`);
+    } else if (criteria.sizeMax) {
+      hakusanat.push(`koko alle ${criteria.sizeMax}”`);
+    }
 
       // asetetaan tekstivastaus
       // const examples = products.slice(0, 2).map((p) => `${p.name} (${p.price} €)`);
