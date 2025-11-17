@@ -4,9 +4,9 @@ function Footer() {
     return (
         <footer>
             <ul>
-                <li><h4>Sivuston tiedot:</h4></li>
                 <li>Sovelluskehitysprojekti</li>
-                <li>By VeViMiKa</li>
+                <li>VeViMiKa</li>
+                <li>2025</li>
             </ul>
         </footer>
     )
