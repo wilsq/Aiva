@@ -46,7 +46,8 @@ async function extractCriteriaWithAI(message) {
         "brand": null | "LG" | "Samsung" | "Sony" | "Philips" | "TCL" | "Thomson",
         "sizeMin": number|null,    
         "sizeMax": number|null,    
-        "budgetMax": number|null,  
+        "budgetMax": number|null,,
+        "excludeBrands": string[] | null 
       }
 
       Säännöt:
@@ -58,6 +59,8 @@ async function extractCriteriaWithAI(message) {
       - Jos käytetään tarkenteita ("vähintään", "yli", "alle", "enintään"), käytä rangea normaalisti.
       - Hyväksy suomen taivutukset: "Samsungin", "LG:n", "viiskytviis tuumaa", "alle tonnin".
       - Tunnetut brändit: LG, Samsung, Sony, Philips, TCL, Thomson.
+      - Jos käyttäjä sanoo "ei Samsungia", "ei Philipsiä", "ei LG:tä" → lisää nämä excludeBrands-listaan tekstinä.
+      - Jos ei mainita, excludeBrands = null.
       - ÄLÄ lisää mitään muuta tekstiä ennen tai jälkeen JSONin.
        `,
   },
@@ -68,8 +71,8 @@ async function extractCriteriaWithAI(message) {
   const raw = (resp.choices?.[0]?.message?.content || "").trim();
   const json = normalizeCriteriaJSON(raw); // { brand, sizeMin, sizeMax, budgetMax }
 
-  const { brand, sizeMin, sizeMax, budgetMax } = json;
-  return { brand, sizeMin, sizeMax, budgetMax };
+  const { brand, excludeBrands, sizeMin, sizeMax, budgetMax } = json;
+  return { brand, excludeBrands, sizeMin, sizeMax, budgetMax };
 }
 
 // ------------------------------------------------------------------
@@ -120,6 +123,7 @@ function normalizeSizeRange(sizeMin, sizeMax) {
 function normalizeCriteriaJSON(raw) {
   let parsed = {
     brand: null,
+    excludeBrands: null,
     sizeMin: null,
     sizeMax: null, 
     budgetMax: null,
@@ -130,6 +134,16 @@ function normalizeCriteriaJSON(raw) {
   } catch {
     const m = raw.match(/\{[\s\S]*\}/);
     if (m) parsed = JSON.parse(m[0]);
+  }
+
+  // normalisoi excludeBrands ja varmistetaan että se on lista
+  if (!Array.isArray(parsed.excludeBrands)) {
+    parsed.excludeBrands = [];
+  } else {
+    // siivotaan whitespace ja tyhjät
+    parsed.excludeBrands = parsed.excludeBrands
+      .map(b => typeof b === "string" ? b.trim() : "")
+      .filter(Boolean);
   }
 
   // Normalisoi hinta
@@ -163,8 +177,9 @@ router.post("/chat/search", async (req, res) => {
     console.log("OpenAI: etsitään brand/hinta/koko viestistä...");
 
 // 1) Tulkitse käyttäjän tarve AI:lla
-    const { brand, budgetMax, sizeMin, sizeMax } = await extractCriteriaWithAI(msg);
+    const { brand, excludeBrands, budgetMax, sizeMin, sizeMax } = await extractCriteriaWithAI(msg);
     console.log("OpenAI brand:", brand);
+    console.log("OpenAI excludeBrands:", excludeBrands);
     console.log("OpenAI max budget:", budgetMax);
     console.log("OpenAI size range :", sizeMin, "to", sizeMax);
 
@@ -172,7 +187,7 @@ router.post("/chat/search", async (req, res) => {
     if (!brand && sizeMin == null && sizeMax == null && budgetMax == null) {
       return res.json({
         source: "openai",
-        criteria: { brand, sizeMin, sizeMax, budgetMax },
+        criteria: { brand, excludeBrands, sizeMin, sizeMax, budgetMax },
         count: 0,
         products: [],
         domainMessage:
@@ -186,6 +201,11 @@ router.post("/chat/search", async (req, res) => {
 
     if (brand) {
       q.brand = new RegExp(`^${brand}$`, "i"); // tarkka case-insensitive osuma
+    }
+
+    if (excludeBrands && excludeBrands.length > 0) {
+      q.brand = q.brand || {}; 
+      q.brand.$nin = excludeBrands;  // NOT IN: älä hae näitä brändejä
     }
 
     if (sizeMin != null || sizeMax != null) {

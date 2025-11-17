@@ -144,6 +144,10 @@ function ChatWindow() {
       hakusanat.push(`koko alle ${criteria.sizeMax}”`);
     }
 
+    if (criteria.excludeBrands && criteria.excludeBrands.length > 0) {
+      hakusanat.push(`ei: ${criteria.excludeBrands.join(", ")}`);
+    }
+
       // asetetaan tekstivastaus
       // const examples = products.slice(0, 2).map((p) => `${p.name} (${p.price} €)`);
       const text = `Löytyi ${count} tuotetta (${hakusanat.join(
