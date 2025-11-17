@@ -12,6 +12,10 @@ h1 {
   margin-top: 40px;
 }
 
+h2 {
+  text-align: center;
+}
+
 h3 {
   margin: 10px;
 }
@@ -66,36 +70,69 @@ h4 {
 
 /*Ryhmän esittelyn asetukset */
 #esittelykappale {
-  background-color: red;
+  background-color: rgb(1, 1, 84);
+  color: white;
   padding: 15px;
+  margin: 10px;
+  border: double 2px black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#esittelykappale p {
+  padding: 0 10px;
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+  text-align: center;
 }
 
 #ryhma {
-  background-color: pink;
+  background-color: rgb(161, 187, 242);
   padding: 15px;
+  margin: 10px;
   color: black;
+  border: double 2px black;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .ryhmalaiset {
   display: flex;
   flex-wrap: wrap;
   padding: 15px;
+  text-align: center;
 }
 
 .hlo {
-  border: double 1px black;
   margin: 10px 5px;
   max-width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(rgb(247, 81, 109), pink);
+  border: 5px solid white;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px -10px rgba(0, 0, 0, 0.613);
+  background-image: linear-gradient(rgb(78, 142, 253), rgb(152, 216, 248));
 }
+
+
+.hlo:hover {
+  box-shadow: 0 34px 32px -33px rgba(0, 0, 0, 0.428);
+  transform: translate(0px, -3px);
+}
+
+.hlo:hover .hlo_kuva {
+  transform: scale(1.1) rotate(2deg);
+}
+
 
 .hlo_kuva {
   max-width: 200px;
   max-height: 200px;
   margin: 10px 5px;
+  padding: 10px;
 }
 
 .esittelyteksti {
@@ -112,8 +149,9 @@ ul {
   margin: 15px;
   padding: 10px;
   border: dotted 5px black;
-  color: black;
-  background-color: aqua;
+  color: white;
+  background-color: darkblue;
+  border-radius: 10px;
 }
 
 .productsearch {
@@ -132,7 +170,6 @@ ul {
 
 
 .hakutuloskentta {
-  background-color: rgb(186, 215, 252);
   padding: 10px;
 }
 
@@ -144,6 +181,7 @@ ul {
   box-sizing: border-box;
   background-color: var(--carousel-bg);
   box-shadow: 3px 2px 5px black;
+  border-radius: 10px;
   margin: 0 auto;
   padding: 15px 7px;
   border-radius: 15px;
@@ -157,9 +195,15 @@ ul {
   padding: 5px;
   margin: 10px;
   box-shadow: 1px 1px 3px black;
+  border: solid 2px white;
+  border-radius: 10px;
 
-  width: 120px;
-  height: 150px;
+  width: 220px;
+  height: 250px;
+}
+
+.tulos img {
+  max-width: 100%;
 }
 
 .tulos:hover {
@@ -171,7 +215,7 @@ ul {
 
 .tuotekaruselli {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 10px;
 }
 
@@ -212,6 +256,7 @@ ul {
 .product-description-container {
   grid-column: 1;
   grid-row: 2;
+  color: black;
 }
 
 .takaisinNappula-container {

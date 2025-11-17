@@ -20,8 +20,7 @@ function App() {
           <p>
             Ryhmämme ViVeMiKa valitsi sovelluskehitysprojektin aiheeksi
             tekoälyavusteisen chatbotin tuotteiden hakemiseen, sillä halusimme
-            harjoitella chatbotin tekemisstä ja tekoälyn hyödyntämistä
-            chatbotissa.
+            harjoitella chatbotin tekemisstä ja tekoälyn hyödyntämistä sovelluksissa.
           </p>
         </div>
         <div id="ryhma">

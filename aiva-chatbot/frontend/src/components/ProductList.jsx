@@ -19,6 +19,7 @@ function ProductList({products}) {
             <div className="tuotekaruselli">
                 {products.map((item, index) => (
                     <div key={index} className="tulos" onClick={() => setValittuTuote(item)}>
+                        <img src={item.imageUrl} alt={item.name} />
                         <strong>{item.name}</strong> <br />
                         <span>Hinta: {item.price}€</span>
                     </div>
