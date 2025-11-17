@@ -119,7 +119,7 @@
   border-radius: 50%;
   border: none;
   padding: 0;
-  background: transparent;
+  background: var(--bg);
   cursor: pointer;
   z-index: 10005;
   display: inline-flex;
