@@ -91,8 +91,13 @@ function ChatWindow() {
 
       //Tekoälyn vastaus ja jos tulee virhe, niin tulostetaan virheviesti
       const data = await response.json();
-      const { criteria, count, products = [] } = data;
+      const { criteria, count, products = [], domainMessage } = data;
       console.log("Hakusanat backendistä: ", criteria);
+
+      // Jos ei yksikään kriteeri täyty, palautetaan domainMessage
+      if (domainMessage) {
+        return domainMessage;
+      }
 
       // jos ei brändiä tunnistettu
       /*if (!criteria?.brand) {

@@ -168,6 +168,19 @@ router.post("/chat/search", async (req, res) => {
     console.log("OpenAI max budget:", budgetMax);
     console.log("OpenAI size range :", sizeMin, "to", sizeMax);
 
+    // Välisteppi: jos yksikään kriteeri ei täyty, palauta viesti.
+    if (!brand && sizeMin == null && sizeMax == null && budgetMax == null) {
+      return res.json({
+        source: "openai",
+        criteria: { brand, sizeMin, sizeMax, budgetMax },
+        count: 0,
+        products: [],
+        domainMessage:
+          "Ymmärrän vain televisioihin liittyviä kysymyksiä. Ota yhteyttä asiakaspalveluun muissa tilanteissa.",
+      });
+    }
+
+
     // 2) Rakenna MongoDB-hakukysely näiden perusteella
     const q = {};
 
