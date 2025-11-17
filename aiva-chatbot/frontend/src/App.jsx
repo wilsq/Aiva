@@ -7,6 +7,7 @@ import Footer from "./components/footer";
 
 import Veera_avatar from "./images/Veera_avatar.png";
 import viljami_avatar from "./images/viljami_avatar.jpg";
+import mikael_avatar from "./images/mikael_avatar.png";
 
 function App() {
   return (
@@ -54,8 +55,13 @@ function App() {
             </li>
             <li className="hlo">
               <h3>Mikael</h3>
-              <p className="esittelyteksti">Esittelyteksti</p>
-              <img src="#" alt="kuva" className="hlo_kuva" />
+              <p className="esittelyteksti">Myyntitaustainen tulevaisuuden IT-osaaja.
+                Olen fronttimielinen koodaajan alku, joka huomaa löytävänsä itsensä
+                yhä useammin backendin puolelta. Tavoitteenani on kehittää ammatillisia
+                taitojani ja osaamistani käytännönläheisissä projekteissa, 
+                monipuolistaen IT-alan taitojani.
+              </p>
+              <img src={mikael_avatar} alt="Picture of a man working on a computer" className="hlo_kuva" />
             </li>
             <li className="hlo">
               <h3>Kauri</h3>
