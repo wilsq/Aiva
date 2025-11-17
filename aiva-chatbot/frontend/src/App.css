@@ -66,6 +66,7 @@ h4 {
 
 #projekti {
   padding: 10px;
+  overflow-y: auto;
 }
 
 
@@ -98,8 +99,8 @@ h4 {
 }
 
 .ryhmalaiset {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   padding: 15px;
   text-align: center;
 }
