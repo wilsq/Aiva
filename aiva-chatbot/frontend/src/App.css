@@ -6,6 +6,8 @@
   .tulos {
     height: auto;
   }
+
+  
 }
 
 
@@ -17,11 +19,6 @@ body {
   flex-direction: column;
   height: 100%;
 }
-
-body * {
-    outline: 1px solid red !important;
-}
-
 
 h1 {
   text-align: center;
@@ -90,8 +87,8 @@ h4 {
 /*Ryhmän esittelyn asetukset */
 #esittelykappale {
   background-color: var(--bg-project-desc);
-  /*padding: 15px;*/
-  /*margin: 10px;*/
+  padding: 15px;
+  margin: 10px;
   border: double 2px black;
   border-radius: 10px;
   display: flex;
@@ -99,7 +96,7 @@ h4 {
 }
 
 #esittelykappale p {
-  /*padding: 0 10px;*/
+  padding: 0 10px;
   line-height: 1.5;
   letter-spacing: 1.5px;
   text-align: center;
@@ -107,8 +104,8 @@ h4 {
 
 #ryhma {
   background-color: rgb(161, 187, 242);
-  /*padding: 15px;*/
-  /*margin: 10px;*/
+  padding: 15px;
+  margin: 10px;
   color: black;
   border: double 2px black;
   border-radius: 10px;
@@ -170,7 +167,7 @@ ul {
 
 /*TUOTEHAUN ASETUKSIA */
 .perustuotehaku {
-  /*padding: 10px;*/
+  padding: 10px;
   border: dotted 5px black;
   color: white;
   background-color: darkblue;
