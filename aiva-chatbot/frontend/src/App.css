@@ -107,10 +107,10 @@ h4 {
 }
 
 #ryhma {
-  background-color: rgb(161, 187, 242);
+  background-color: var(--bg-project-desc);
   padding: 15px;
   margin: 10px;
-  color: black;
+  color: var(--card-text);
   border: double 2px black;
   border-radius: 10px;
   text-align: center;
@@ -135,11 +135,11 @@ h4 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 5px solid white;
+  border: 5px solid var(--bg);
   cursor: pointer;
   border-radius: 10px;
   box-shadow: 3px 3px 20px -10px rgba(0, 0, 0, 0.613);
-  background-image: linear-gradient(rgb(78, 142, 253), rgb(152, 216, 248));
+  background-image: linear-gradient(var(--bg-team-card-dark), var(--bg-team-card-light));
 }
 
 
@@ -175,7 +175,7 @@ ul {
   margin-bottom: 50px;
   border: dotted 5px black;
   color: white;
-  background-color: darkblue;
+  background-color: var(--bg-team-card-dark);
   border-radius: 10px;
 }
 

@@ -24,8 +24,8 @@ tokenien muotoilu: --CSS-muuttuja: arvo; */
 
   --bg-project-desc: #1a1919;
   --bg-project-team: #2c2c2c;
-  --bg-team-card-dark: rgb(10, 38, 80);
-  --bg-team-card-light: rgb(15, 55, 114);
+  --bg-team-card-dark: rgb(23, 40, 71);
+  --bg-team-card-light: rgb(44, 78, 117);
 
   /* typografia ja renderöinti */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -66,8 +66,8 @@ html[data-theme="light"] {
 
   --bg-project-desc: rgb(223, 223, 223);
   --bg-project-team: whitesmoke;
-  --bg-team-card-dark: rgb(83, 136, 214);
-  --bg-team-card-light: aliceblue;
+  --bg-team-card-dark: rgb(78, 142, 253);
+  --bg-team-card-light: rgb(152, 216, 248);
 
   color-scheme: light;
 }
@@ -95,8 +95,8 @@ html[data-theme="light"] {
     
     --bg-project-desc: rgb(223, 223, 223);
     --bg-project-team: whitesmoke;
-    --bg-team-card-dark: rgb(83, 136, 214);
-    --bg-team-card-light: aliceblue;
+    --bg-team-card-dark: rgb(78, 142, 253);
+    --bg-team-card-light: rgb(152, 216, 248);
   }
 }
 
