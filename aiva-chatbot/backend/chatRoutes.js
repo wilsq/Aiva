@@ -46,11 +46,16 @@ async function extractCriteriaWithAI(message) {
         "brand": null | "LG" | "Samsung" | "Sony" | "Philips" | "TCL" | "Thomson",
         "sizeMin": number|null,    
         "sizeMax": number|null,    
-        "budgetMax": number|null,,
-        "excludeBrands": string[] | null 
+        "budgetMax": number|null,
+        "excludeBrands": string[] | null,
+        "domain": "tv" | "electronics" | "other"
       }
 
       Säännöt:
+      - Jos viesti koskee nimenomaan televisioita → domain = "tv".
+      - Jos viesti koskee muuta kodinelektroniikkaa (esim. tietokoneet, konsolit, äänentoisto) → domain = "electronics".
+      - Jos viesti ei liity elektroniikkaan ollenkaan → domain = "other".
+      - Jos mitään hakuehtoja (brand / koko / hinta) ei mainita, pidä ne null.
       - Ruutukoko ilmaistaan TUUMISSA. Jos viestissä mainitaan cm, muunna tuumiksi ja pyöristä lähimpään kokonaislukuun.
       - Hinta euroissa. Palauta pelkkä numero ilman €-merkkiä, esim. "alle 800€" -> 800.
       - Ranges tulkitaan: "50–55 tuumaa" -> sizeMin=50, sizeMax=55. "vähintään 55" -> sizeMin=55.
@@ -71,14 +76,16 @@ async function extractCriteriaWithAI(message) {
   const raw = (resp.choices?.[0]?.message?.content || "").trim();
   const json = normalizeCriteriaJSON(raw); // { brand, sizeMin, sizeMax, budgetMax }
 
-  const { brand, excludeBrands, sizeMin, sizeMax, budgetMax } = json;
-  return { brand, excludeBrands, sizeMin, sizeMax, budgetMax };
+  const { brand, excludeBrands, sizeMin, sizeMax, budgetMax, domain } = json;
+  return { brand, excludeBrands, sizeMin, sizeMax, budgetMax, domain };
 }
 
 // ------------------------------------------------------------------
 // Normalisointifunktiot
 // Nämä varmistavat, että OpenAI:n palauttama data on käyttökelpoista
 // ------------------------------------------------------------------
+
+
 
 // Normalisoidaan hinta 
 function normalizeBudget(value) {
@@ -127,6 +134,7 @@ function normalizeCriteriaJSON(raw) {
     sizeMin: null,
     sizeMax: null, 
     budgetMax: null,
+    domain: "other",
   };
 
    try {
@@ -134,6 +142,12 @@ function normalizeCriteriaJSON(raw) {
   } catch {
     const m = raw.match(/\{[\s\S]*\}/);
     if (m) parsed = JSON.parse(m[0]);
+  }
+
+  // domain varmistus
+  const allowedDomains = ["tv", "electronics", "other"];
+  if (!allowedDomains.includes(parsed.domain)) {
+    parsed.domain = "other";
   }
 
   // normalisoi excludeBrands ja varmistetaan että se on lista
@@ -177,17 +191,18 @@ router.post("/chat/search", async (req, res) => {
     console.log("OpenAI: etsitään brand/hinta/koko viestistä...");
 
 // 1) Tulkitse käyttäjän tarve AI:lla
-    const { brand, excludeBrands, budgetMax, sizeMin, sizeMax } = await extractCriteriaWithAI(msg);
+    const { brand, excludeBrands, budgetMax, sizeMin, sizeMax, domain } = await extractCriteriaWithAI(msg);
     console.log("OpenAI brand:", brand);
     console.log("OpenAI excludeBrands:", excludeBrands);
     console.log("OpenAI max budget:", budgetMax);
     console.log("OpenAI size range :", sizeMin, "to", sizeMax);
+    console.log("OpenAI domain:", domain);
 
-    // Välisteppi: jos yksikään kriteeri ei täyty, palauta viesti.
-    if (!brand && sizeMin == null && sizeMax == null && budgetMax == null) {
+   // Jos viesti EI liity elektroniikkaan ollenkaan
+    if (domain === "other") {
       return res.json({
         source: "openai",
-        criteria: { brand, excludeBrands, sizeMin, sizeMax, budgetMax },
+        criteria: { brand, sizeMin, sizeMax, budgetMax, domain },
         count: 0,
         products: [],
         domainMessage:
@@ -195,6 +210,23 @@ router.post("/chat/search", async (req, res) => {
       });
     }
 
+    // Jos viesti liittyy elektroniikkaan, mutta mitään TV-kriteeriä ei saatu ulos
+    const noCriteria =
+      !brand &&
+      sizeMin == null &&
+      sizeMax == null &&
+      budgetMax == null;
+
+    if ((domain === "tv" || domain === "electronics") && noCriteria) {
+      return res.json({
+        source: "openai",
+        criteria: { brand, sizeMin, sizeMax, budgetMax, domain },
+        count: 0,
+        products: [],
+        domainMessage:
+          "Osaan auttaa TV-ostoksissa. Kokeile esimerkiksi: 'Etsi Samsung-televisio alle 800 eurolla' tai 'Haluan vähintään 50-65 tuumaisen television, mutta en Sonya'.",
+      });
+    }
 
     // 2) Rakenna MongoDB-hakukysely näiden perusteella
     const q = {};
