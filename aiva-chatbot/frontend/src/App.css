@@ -103,10 +103,16 @@ h4 {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   padding: 15px;
   text-align: center;
+  place-content: center;
+  align-items: stretch;
+  gap: 20px;
 }
 
 .hlo {
-  margin: 10px 5px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
   max-width: 250px;
   display: flex;
   flex-direction: column;
@@ -194,7 +200,9 @@ ul {
   color: var(--card-text);
   background-color: var(--card-bg);
   padding: 5px;
-  margin: 10px;
+  /*margin: 10px;*/
+  margin-left: auto;
+  margin-right: auto;
   box-shadow: 1px 1px 3px black;
   border: solid 2px white;
   border-radius: 10px;
