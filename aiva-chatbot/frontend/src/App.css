@@ -182,6 +182,7 @@ ul {
 
 
 /*TUOTELISTAUKSEN ASETUKSIA*/
+
 .tuotelista {
   display: inline-block;
   width: 100%;
@@ -200,7 +201,6 @@ ul {
   color: var(--card-text);
   background-color: var(--card-bg);
   padding: 5px;
-  /*margin: 10px;*/
   margin-left: auto;
   margin-right: auto;
   box-shadow: 1px 1px 3px black;
