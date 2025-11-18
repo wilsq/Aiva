@@ -8,6 +8,7 @@ import Footer from "./components/footer";
 import Veera_avatar from "./images/Veera_avatar.png";
 import viljami_avatar from "./images/viljami_avatar.jpg";
 import mikael_avatar from "./images/mikael_avatar.png";
+import team_member from "./images/team_member.png"
 
 function App() {
   return (
@@ -64,8 +65,11 @@ function App() {
             </li>
             <li className="hlo">
               <h3>Kauri</h3>
-              <p className="esittelyteksti">Esittelyteksti</p>
-              <img src="#" alt="kuva" className="hlo_kuva" />
+              <p className="esittelyteksti">Olen IT-tradenomiopiskelija, jolla on kovasti kiinnostusta webdevauksen suuntaan.
+                Tässä projektissa työskentelin frontin puolella, tavoitteenani tuottaa responsiivinen ja toimiva sivusto.
+                Kehitän yhä taitojani ja projektin aikana tuli opittua paljon uutta!
+              </p>
+              <img src={team_member} alt="Image of an anonymous user" className="hlo_kuva" />
             </li>
           </ul>
         </div>
