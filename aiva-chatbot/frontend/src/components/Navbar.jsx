@@ -4,12 +4,8 @@ function Navbar() {
     return (
         <>
             <header className="navbar">
-                <h1>Sovelluskehityskurssin harjoitustyö:</h1>
-                <nav>
-                <ul>
-                <li>Kotisivu</li>
-                </ul>
-            </nav>
+                <h1>Sovelluskehityskurssin harjoitustyö</h1>
+
             </header>
         </>
     );

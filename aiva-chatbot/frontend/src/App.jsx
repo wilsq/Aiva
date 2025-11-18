@@ -16,7 +16,7 @@ function App() {
 
       <div id="projekti">
         <div id="esittelykappale">
-          <h2>Projekti: Tekoälyavusteinen chatbot tuotteiden hakemiseen</h2>
+          <h2>Projekti:<br></br> Tekoälyavusteinen chatbot tuotteiden hakemiseen</h2>
           <p>
             Ryhmämme ViVeMiKa valitsi sovelluskehitysprojektin aiheeksi
             tekoälyavusteisen chatbotin tuotteiden hakemiseen, sillä halusimme
