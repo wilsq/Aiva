@@ -331,5 +331,7 @@ body.chat-window-fullscreen { overflow: hidden; }
     flex: 1;
     overflow-y: auto;
     margin: 0;
+    margin-bottom: 40px;
   }
+
 }

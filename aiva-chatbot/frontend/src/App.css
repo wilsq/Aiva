@@ -1,3 +1,4 @@
+/*
 @media (max-width: 600px) {
   .tulos img{
     display: none;
@@ -12,7 +13,7 @@
   }
 
 }
-
+*/
 
 body {
   color: var(--text);
@@ -327,3 +328,20 @@ footer ul {
     display: none;
   }
 }
+
+@media (max-width: 600px) {
+  .tulos img{
+    display: none;
+  }
+
+  .tulos {
+    height: auto;
+    width: 150px;
+  }
+
+  #projekti {
+    box-sizing: border-box;
+  }
+
+}
+
