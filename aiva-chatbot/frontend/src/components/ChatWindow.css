@@ -38,7 +38,7 @@
   position: fixed;
   bottom: 50px;
   right: 20px; /* TÄMÄ */
-  width: clamp(300px, 100%, 1000px);
+  width: clamp(300px, 90%, 1000px);
   background-color: var(--bg);
   border-radius: 16px;
   padding: 0px;
@@ -214,6 +214,7 @@
   padding: 10px;
   height: 45px;
   padding: 0 15px;
+  background-color: transparent;
 }
 
 .chat-button {

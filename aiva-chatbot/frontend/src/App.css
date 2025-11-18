@@ -172,6 +172,7 @@ ul {
 /*TUOTEHAUN ASETUKSIA */
 .perustuotehaku {
   padding: 10px;
+  margin-bottom: 50px;
   border: dotted 5px black;
   color: white;
   background-color: darkblue;

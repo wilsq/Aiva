@@ -69,15 +69,17 @@ function App() {
             </li>
           </ul>
         </div>
-      </div>
-
-      <div className="perustuotehaku">
+        <div className="perustuotehaku">
         <h3>
           Täällä voit testata tuotteiden hakemista nimellä
           harjoittelutietokannasta:
         </h3>
         <ProductSearch />
+        </div>
+      
       </div>
+
+
 
       <ChatWindow />
 
